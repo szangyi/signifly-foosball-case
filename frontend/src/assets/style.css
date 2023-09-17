@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "Aeonik-400";
+    src: url('../assets/Aeonik-400.woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Aeonik-700";
+    src: url('../assets/Aeonik-700.woff');
+    font-weight: 700;
+    font-style: normal;
+}
