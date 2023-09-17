@@ -1,6 +1,8 @@
 "use client"
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import TeamsGetAll from '../features/TeamsGetAll.js';
+
 import {
     Box,
     Card,
@@ -11,6 +13,15 @@ import {
 
 
 export default function Teams() {
+
+    const [profilesData, setProfilesData] = useState(null);
+
+    useEffect(() => {
+        TeamsGetAll(setProfilesData)
+    }, [])
+
+    console.log(profilesData)
+
     return (
         <>
 
@@ -26,34 +37,30 @@ export default function Teams() {
                     gap={20}
                     mt={20}
                 >
-                    <GridItem w='100%' h='100%' bg='blue.500' >
+
+                    {/* <GridItem w='100%' h='100%' bg='blue.500' >
                         <Card borderRadius={0} boxShadow={0} borderTop={'1.5px solid black'}>
                             <Text fontSize={'3xl'} mt={5}>Team Cougar</Text>
                             <Text fontSize={'md'} mt={5}>Justin Timberlake</Text>
                             <Text fontSize={'md'} mt={1}>King Richard</Text>
                         </Card>
-                    </GridItem>
-                    <GridItem w='100%' h='100%' bg='blue.500' >
-                        <Card borderRadius={0} boxShadow={0} borderTop={'1.5px solid black'}>
-                            <Text fontSize={'3xl'} mt={5}>Team Cougar</Text>
-                            <Text fontSize={'md'} mt={5}>Justin Timberlake</Text>
-                            <Text fontSize={'md'} mt={1}>King Richard</Text>
-                        </Card>
-                    </GridItem>
-                    <GridItem w='100%' h='100%' bg='blue.500' >
-                        <Card borderRadius={0} boxShadow={0} borderTop={'1.5px solid black'}>
-                            <Text fontSize={'3xl'} mt={5}>Team Cougar</Text>
-                            <Text fontSize={'md'} mt={5}>Justin Timberlake</Text>
-                            <Text fontSize={'md'} mt={1}>King Richard</Text>
-                        </Card>
-                    </GridItem>
-                    <GridItem w='100%' h='100%' bg='blue.500' >
-                        <Card borderRadius={0} boxShadow={0} borderTop={'1.5px solid black'}>
-                            <Text fontSize={'3xl'} mt={5}>Team Cougar</Text>
-                            <Text fontSize={'md'} mt={5}>Justin Timberlake</Text>
-                            <Text fontSize={'md'} mt={1}>King Richard</Text>
-                        </Card>
-                    </GridItem>
+                    </GridItem> */}
+
+                    {profilesData && (
+
+                        profilesData.map((profile) => (
+                            <GridItem key={profile[0]} w='100%' h='100%' bg='blue.500' >
+                                <Card borderRadius={0} boxShadow={0} borderTop={'1.5px solid black'}>
+                                    <Text fontSize={'3xl'} mt={5}>{profile[1]}</Text>
+                                    <Text fontSize={'md'} mt={5}>{profile[2]}</Text>
+                                    <Text fontSize={'md'} mt={5}>{profile[3]}</Text>
+                                </Card>
+                            </GridItem>
+                        ))
+                    )
+                    }
+
+
                 </Grid>
 
             </Box>

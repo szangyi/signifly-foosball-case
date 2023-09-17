@@ -39,8 +39,8 @@
 from bottle import Bottle, run, default_app, static_file, get, route
 
 
-
-import team_get_all
+############### Features #####################
+import teams_get_all
 
 
 
@@ -48,7 +48,8 @@ import team_get_all
 def react_app():
     return static_file('index.html', root='../frontend/public')
 
-############### RUN #####################
+
+############### Run #####################
 try:
   import production
   application = default_app()
