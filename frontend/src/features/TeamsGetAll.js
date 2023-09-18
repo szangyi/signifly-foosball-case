@@ -1,14 +1,14 @@
-
-// --------------------------
-// REACT ---------------
-// --------------------------
 import axios from 'axios';
 import { useEffect } from 'react';
 
 export default async function TeamsGetAll(setTeamsData) {
     try {
-
-        const response = await axios.get('/api/teams_get_all', { withCredentials: false })
+        const response = await axios.get('/api/teams_get_all', { 
+            withCredentials: false,
+            headers: {
+                'Content-Type': 'application/json',
+            }, 
+        })
 
         if (response.status === 200) {
             const teamsData = response.data;

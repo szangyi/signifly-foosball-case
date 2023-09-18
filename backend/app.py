@@ -41,7 +41,8 @@ from bottle import Bottle, run, default_app, static_file, get, route
 
 ############### Features #####################
 import teams_get_all
-import team_update
+import teams_update
+import team_create
 
 
 
