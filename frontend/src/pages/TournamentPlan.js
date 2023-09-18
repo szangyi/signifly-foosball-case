@@ -21,6 +21,7 @@ import { AddIcon, EditIcon } from '@chakra-ui/icons';
 
 import GamesGetAll from '../features/GamesGetAll';
 import TeamsGetAll from '../features/TeamsGetAll';
+import GameCreateAPI from '../features/GameCreate';
 
 
 export default function TournamentPlan() {
@@ -28,6 +29,8 @@ export default function TournamentPlan() {
     const isAdminLoggedinStored = localStorage.getItem('isAdminLoggedinStored');
     const [gamesData, setGamesData] = useState(null);
     const [teamsData, setTeamsData] = useState(null);
+    const [team1Value, setTeam1Value] = useState(false);
+    const [team2Value, setTeam2Value] = useState(false);
 
 
     console.log(gamesData)
@@ -46,8 +49,25 @@ export default function TournamentPlan() {
 
     }, []);
 
+
+    const handleTeam1Change = (event) => {
+        const valueData = event.target.value;
+        console.log(valueData)
+        setTeam1Value(valueData)
+        console.log(team1Value)
+    }
+
+    const handleTeam2Change = (event) => {
+        const valueData = event.target.value;
+        setTeam2Value(valueData)
+        console.log(team2Value)
+    }
+
+
     const submitCreateHandler = () => {
         console.log('whatever')
+        GameCreateAPI( {team_id_1: team1Value, team_id_2: team2Value, } )  
+        
         // const teamName = teamNameRef.current.value;
         // const teamMember1 = teamMember1Ref.current.value;
         // const teamMember2 = teamMember2Ref.current.value;
@@ -84,7 +104,7 @@ export default function TournamentPlan() {
                                         <Text>{game.team_name_1}</Text>
                                     </GridItem>
                                     <GridItem>
-                                        <Text  fontSize={'xl'} fontWeight={'700'} textAlign={'end'}>{game.team_score_1} </Text>
+                                        <Text fontSize={'xl'} fontWeight={'700'} textAlign={'end'}>{game.team_score_1} </Text>
                                     </GridItem>
                                     <GridItem>
                                         <Text fontSize={'xl'} fontWeight={'700'} textAlign={'center'}>–</Text>
@@ -127,27 +147,39 @@ export default function TournamentPlan() {
                                         {/* <Text>team 1 members</Text> */}
                                     </GridItem>
                                     <GridItem>
-                                        <Select size='sm' placeholder='Choose a team'>
+                                        <Select
+                                            size='sm'
+                                            placeholder='Choose a team'
+                                            onChange={handleTeam1Change}
+                                            value={team1Value}
+                                        >
                                             {teamsData &&
                                                 teamsData.map((team, teamIndex) => (
-                                                    <option value={team.team_id}>{team.team_name}</option>
+                                                    <option value={team.id}>{team.team_name}</option>
                                                 ))}
                                         </Select>
                                     </GridItem>
                                     <GridItem display={'flex'} justifyContent={'end'}>
-                                        <Input size='sm' maxW={'60px'}  textAlign={'end'} fontSize={'xl'} defaultValue={null}></Input>
+                                        {/* <Input size='sm' maxW={'60px'} textAlign={'end'} fontSize={'xl'} defaultValue={null}></Input> */}
+                                        {/* <Text fontSize={'xl'} fontWeight={'700'} textAlign={'end'}>-</Text> */}
                                     </GridItem>
                                     <GridItem>
                                         <Text textAlign={'center'}>–</Text>
                                     </GridItem>
                                     <GridItem>
-                                        <Input size='sm' maxW={'60px'} textAlign={'end'} fontSize={'xl'} defaultValue={null}></Input>
+                                        {/* <Input size='sm' maxW={'60px'} textAlign={'end'} fontSize={'xl'} defaultValue={null}></Input> */}
+                                        {/* <Text fontSize={'xl'} fontWeight={'700'} > - </Text> */}
                                     </GridItem >
                                     <GridItem>
-                                        <Select size='sm' placeholder='Choose a team'>
+                                        <Select
+                                            size='sm'
+                                            placeholder='Choose a team'
+                                            onChange={handleTeam2Change}
+                                            value={team2Value}
+                                        >
                                             {teamsData &&
                                                 teamsData.map((team, teamIndex) => (
-                                                    <option value={team.team_id}>{team.team_name}</option>
+                                                    <option value={team.id}>{team.team_name}</option>
                                                 ))}
                                         </Select>
                                     </GridItem>
