@@ -22,6 +22,9 @@ def _():
                 "team_name": team[1],
                 "team_member_1": team[2],
                 "team_member_2": team[3],
+                "games_won": team[4],
+                "games_lost": team[5],
+                "games_points": team[6],
                 # Add other fields as needed
             }
             teams_list.append(team_dict)

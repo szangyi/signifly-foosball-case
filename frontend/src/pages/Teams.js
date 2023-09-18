@@ -35,14 +35,7 @@ export default function Teams() {
         });
     }, []);
 
-    // const handleFieldChange = (event, teamIndex, fieldIndex) => {
-    //     const newValue = event.target.value;
-    //     setEditedData((prevData) =>
-    //         prevData.map((team, i) =>
-    //             i === teamIndex ? { ...team, [fieldIndex]: newValue } : team
-    //         )
-    //     );
-    // };
+    
     const handleFieldChange = (event, teamIndex, fieldIndex) => {
         const newValue = event.target.value;
         setEditedData((prevData) => {
@@ -59,14 +52,14 @@ export default function Teams() {
         TeamUpdateAPI(editedData)
     };
 
-    // const submitCreateHandler = () => {
-    //     const teamName = teamNameRef.current.value;
-    //     const teamMember1 = teamMember1Ref.current.value;
-    //     const teamMember2 = teamMember2Ref.current.value;
+    const submitCreateHandler = () => {
+        const teamName = teamNameRef.current.value;
+        const teamMember1 = teamMember1Ref.current.value;
+        const teamMember2 = teamMember2Ref.current.value;
 
-    //     TeamCreateAPI({ team_name: teamName, team_member_1: teamMember1, team_member_2: teamMember2 });
-    //     window.location.reload()
-    // };
+        TeamCreateAPI({ team_name: teamName, team_member_1: teamMember1, team_member_2: teamMember2 });
+        // window.location.reload()
+    };
 
     return (
         <>
@@ -147,7 +140,7 @@ export default function Teams() {
                         ))}
 
                     {/* Add team */}
-                    {/* {isAdminLoggedinStored && teamsData && teamsData.length < 8 && (
+                    {isAdminLoggedinStored && teamsData && teamsData.length < 8 && (
                         <GridItem w='100%' h='100%'>
                             <Card h={'100%'} borderRadius={0} boxShadow={0} borderTop={'1.5px solid black'}>
                                 <form id='team-create-form'>
@@ -169,7 +162,7 @@ export default function Teams() {
                                 </form>
                             </Card>
                         </GridItem>
-                    )} */}
+                    )}
 
                 </Grid>
             </Box>
