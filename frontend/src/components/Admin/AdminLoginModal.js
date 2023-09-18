@@ -1,5 +1,5 @@
 
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState  } from "react"
 import { UnlockIcon, LockIcon } from '@chakra-ui/icons'
 
 import {
@@ -11,45 +11,49 @@ import {
     ModalFooter,
     ModalHeader,
     ModalOverlay,
-    Text,
     useDisclosure,
     IconButton,
     HStack,
     PinInput,
     PinInputField
 } from "@chakra-ui/react"
-import { useEffect, useState } from 'react'
-import Cookies from 'js-cookie';
-import AuthContext from "../../util/auth-context";
 
 
 
-export default function AdminModal({ setIsAdminLoggedin }) {
+export default function AdminModal() {
 
-    const ctx = useContext(AuthContext)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [adminLoginValue, setAdminLoginValue] = useState()
 
+    const isAdminLoggedinStored = localStorage.getItem('isAdminLoggedinStored');
+    console.log(`local storage admin: ` + isAdminLoggedinStored)
 
+    // Log in 
     useEffect(() => {
         if (adminLoginValue === '1234') {
-            setIsAdminLoggedin(true)
-            console.log('login success')
+            localStorage.setItem('isAdminLoggedinStored', 'true');
             onClose()
+            window.location.reload()
         }
     }, [adminLoginValue])
 
+    // Log out
+    function adminLogout() {
+        localStorage.removeItem('isAdminLoggedinStored');
+        window.location.reload()
+    }
+
     return (
         <>
-            {/* <AdminLock onClick={onOpen}/> */}
-
-            {ctx.isAdminLoggedin ? (
+            {isAdminLoggedinStored ? (
                 <IconButton
+                    backgroundColor={'#FEC7D4'}
                     aria-label='Change data as admin'
                     icon={<UnlockIcon />}
                     position={'fixed'}
                     right={0}
                     bottom={0}
+                    onClick={adminLogout}
                 />
             ) : (
                 <IconButton

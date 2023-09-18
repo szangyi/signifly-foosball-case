@@ -8,13 +8,8 @@ import { useEffect } from 'react';
 export default async function TeamsGetAll(setTeamsData) {
     try {
 
-        // axios.get('/api/teams_get_all').then(res => setTeamsData(res.data))
-        console.log("annnnyyyad")
         const response = await axios.get('/api/teams_get_all', { withCredentials: false })
-        // const response = axios.get('/api/teams_get_all', { withCredentials: false })
         const teamsData = response.data;
-        console.log(response)
-        console.log(teamsData)
         setTeamsData(teamsData);
 
         // if (response.status === 200) {
