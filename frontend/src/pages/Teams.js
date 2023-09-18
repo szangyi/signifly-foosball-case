@@ -1,98 +1,138 @@
-"use client"
-
-import React, { useEffect, useState, useContext } from 'react';
-import TeamsGetAll from '../features/TeamsGetAll.js';
-import AuthContext from '../util/auth-context.js';
-
-
+import React, { useEffect, useState } from 'react';
 import {
     Box,
-    Card,
-    Text,
+    Button,
+    Editable,
+    EditableInput,
+    EditablePreview,
+    Flex,
     Grid,
     GridItem,
-    Input,
-    Editable,
-    EditablePreview,
-    EditableInput
-} from "@chakra-ui/react"
-
+    Text,
+    Card,
+} from '@chakra-ui/react';
+import { EditIcon } from '@chakra-ui/icons';
+import TeamsGetAll from '../features/TeamsGetAll';
+import TeamUpdateAPI from '../features/TeamUpdate';
 
 export default function Teams() {
-
     const isAdminLoggedinStored = localStorage.getItem('isAdminLoggedinStored');
-    console.log(`local storage admin: ` + isAdminLoggedinStored)
-
-    const [profilesData, setProfilesData] = useState(null);
-    const ctx = useContext(AuthContext)
-
+    const [teamsData, setTeamsData] = useState(null);
+    const [editedData, setEditedData] = useState([]);
 
     useEffect(() => {
-        TeamsGetAll(setProfilesData)
-    }, [])
+        TeamsGetAll((data) => {
+            // Initialize editedData with the same data
+            setEditedData(data);
+            setTeamsData(data);
+        });
+    }, []);
 
-    // console.log(profilesData)
+    const handleFieldChange = (event, teamIndex, fieldIndex) => {
+        const newValue = event.target.value;
+        setEditedData((prevData) =>
+            prevData.map((team, i) =>
+                i === teamIndex ? { ...team, [fieldIndex]: newValue } : team
+            )
+        );
+    };
+
+    const submitHandler = () => {
+        // Send editedData to your backend API here
+        console.log('Edited Data:', editedData);
+        TeamUpdateAPI(editedData)
+    };
 
     return (
         <>
-
             <Box mx={{ base: 5, md: 12 }}>
-
-                <Text fontSize={'6xl'} mt={10} >
+                <Text fontSize={'6xl'} mt={10}>
                     Teams
                 </Text>
-
                 <Grid
-                    templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }}
-                    templateRows={{ base: '8fr', md: 'repeat(4, 1fr)', lg: 'repeat(2, 1fr)' }}
+                    templateColumns={{
+                        base: '1fr',
+                        md: 'repeat(2, 1fr)',
+                        lg: 'repeat(4, 1fr)',
+                    }}
+                    templateRows={{
+                        base: '8fr',
+                        md: 'repeat(4, 1fr)',
+                        lg: 'repeat(2, 1fr)',
+                    }}
                     gap={20}
                     mt={20}
                 >
-
-                    {profilesData && (
-                        profilesData.map((profile) => (
-                            <GridItem key={profile[0]} w='100%' h='100%' bg='blue.500' >
+                    {teamsData &&
+                        teamsData.map((team, teamIndex) => (
+                            <GridItem key={teamIndex} id={teamIndex} w='100%' h='100%'>
                                 <Card h={'100%'} borderRadius={0} boxShadow={0} borderTop={'1.5px solid black'}>
-
-                                    {/* {ctx.isAdminLoggedin ? ( */}
                                     {isAdminLoggedinStored ? (
-                                        <>
-                                            <Editable backgroundColor={'blue'}  defaultValue={profile[1]} fontSize={'3xl'} mt={5}>
+                                        <form id={`team-edit-form-${teamIndex}`}>
+                                            <Editable
+                                                defaultValue={team[1]}
+                                                fontSize={'3xl'}
+                                                mt={5}
+                                                onChange={(newValue) =>
+                                                    handleFieldChange({ target: { value: newValue } }, teamIndex, 1)
+                                                }
+                                            >
                                                 <EditablePreview w={'full'} />
                                                 <EditableInput />
                                             </Editable>
-                                            <Editable backgroundColor={'blue'}  defaultValue={profile[2]} fontSize={'md'} mt={5}>
+                                            <Editable
+                                                defaultValue={team[2]}
+                                                fontSize={'md'}
+                                                mt={5}
+                                                onChange={(newValue) =>
+                                                    handleFieldChange({ target: { value: newValue } }, teamIndex, 2)
+                                                }
+                                            >
                                                 <EditablePreview w={'full'} />
                                                 <EditableInput />
                                             </Editable>
-                                            <Editable backgroundColor={'blue'}  defaultValue={profile[3]} fontSize={'md'} mt={5}>
+                                            <Editable
+                                                defaultValue={team[3]}
+                                                fontSize={'md'}
+                                                mt={5}
+                                                onChange={(newValue) =>
+                                                    handleFieldChange({ target: { value: newValue } }, teamIndex, 3)
+                                                }
+                                            >
                                                 <EditablePreview w={'full'} />
                                                 <EditableInput />
                                             </Editable>
-                                        </>
+                                        </form>
                                     ) : (
                                         <>
-                                            <Text fontSize={'3xl'} mt={5}>{profile[1]}</Text>
-                                            <Text fontSize={'md'} mt={5}>{profile[2]}</Text>
-                                            <Text fontSize={'md'} mt={5}>{profile[3]}</Text>
+                                            <Text fontSize={'3xl'} mt={5}>
+                                                {team[1]}
+                                            </Text>
+                                            <Text fontSize={'md'} mt={5}>
+                                                {team[2]}
+                                            </Text>
+                                            <Text fontSize={'md'} mt={5}>
+                                                {team[3]}
+                                            </Text>
                                         </>
-                                    )
-                                    }
-
+                                    )}
                                 </Card>
                             </GridItem>
-                        ))
-                    )
-                    }
-
-
+                        ))}
                 </Grid>
-
             </Box>
-
+            {isAdminLoggedinStored && (
+                <Flex direction={'column'} position={'fixed'} right={0} bottom={10} alignItems={'flex-end'}>
+                    <Button
+                        onClick={submitHandler}
+                        backgroundColor={'#FEC7D4'}
+                        rightIcon={<EditIcon />}
+                        variant='solid'
+                    >
+                        Save changes
+                    </Button>
+                </Flex>
+            )}
         </>
-    )
-};
-
-
-
+    );
+}

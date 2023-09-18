@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect, useState  } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { UnlockIcon, LockIcon } from '@chakra-ui/icons'
 
 import {
@@ -15,7 +15,9 @@ import {
     IconButton,
     HStack,
     PinInput,
-    PinInputField
+    PinInputField,
+    Box,
+    Flex
 } from "@chakra-ui/react"
 
 
@@ -26,7 +28,7 @@ export default function AdminModal() {
     const [adminLoginValue, setAdminLoginValue] = useState()
 
     const isAdminLoggedinStored = localStorage.getItem('isAdminLoggedinStored');
-    console.log(`local storage admin: ` + isAdminLoggedinStored)
+    // console.log(`local storage admin: ` + isAdminLoggedinStored)
 
     // Log in 
     useEffect(() => {
@@ -46,24 +48,38 @@ export default function AdminModal() {
     return (
         <>
             {isAdminLoggedinStored ? (
-                <IconButton
-                    backgroundColor={'#FEC7D4'}
-                    aria-label='Change data as admin'
-                    icon={<UnlockIcon />}
-                    position={'fixed'}
-                    right={0}
-                    bottom={0}
-                    onClick={adminLogout}
-                />
+                <>
+                    <Flex
+                        direction={'column'}
+                        position={'fixed'}
+                        right={0}
+                        bottom={0}
+                        alignItems={'flex-end'}
+                    >
+
+                        <IconButton
+                            borderColor={'#FEC7D4'}
+                            w={'fit-content'}
+                            variant='outline'
+                            aria-label='Log out as admin'
+                            icon={<UnlockIcon />}
+                            onClick={adminLogout}
+                        />
+                    </Flex>
+                </>
             ) : (
-                <IconButton
-                    aria-label='Change data as admin'
-                    icon={<LockIcon />}
+                <Flex
+                    direction={'column'}
                     position={'fixed'}
                     right={0}
-                    bottom={0}
-                    onClick={onOpen}
-                />
+                    bottom={0}>
+                    <IconButton
+                        aria-label='Open admin login modal'
+                        icon={<LockIcon />}
+                        onClick={onOpen}
+                    />
+                </Flex>
+
             )}
 
 
@@ -92,6 +108,8 @@ export default function AdminModal() {
                     </ModalFooter>
                 </ModalContent>
             </Modal>
+
+
         </>
     )
 }
