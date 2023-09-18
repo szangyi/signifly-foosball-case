@@ -1,5 +1,5 @@
 "use client"
-
+import React, {useContext} from "react"
 import Logo from "../Logo/Logo"
 
 import {
@@ -11,7 +11,6 @@ import {
     Collapse,
     Popover,
     PopoverTrigger,
-    useColorModeValue,
     useBreakpointValue,
     useDisclosure
 } from "@chakra-ui/react"
@@ -19,65 +18,77 @@ import {
     HamburgerIcon,
     CloseIcon,
 } from "@chakra-ui/icons"
+import AuthContext from "../../util/auth-context"
 
 
 export default function Nav() {
+
+    const ctx = useContext(AuthContext)
+
     const { isOpen, onToggle } = useDisclosure()
 
     return (
-        <Box mx={{ base: 5, md: 12 }}
-        >
-            <Flex
-                bg={useColorModeValue("white", "gray.800")}
-                color={"black"}
-                minH={"100px"}
-                py={{ base: 2 }}
-                borderBottom={'1.5px'}
-                borderStyle={"solid"}
-                borderColor={"black"}
-                align={"center"}
+        <>
+            <Box mx={{ base: 5, md: 12 }}
             >
+                {ctx.isAdminLoggedin && (
+                    <li>
+                        <h1>YEAAAHH</h1>
+                    </li>
+                )}
                 <Flex
-                    flex={{ base: 1, md: "auto" }}
-                    ml={{ base: -2 }}
-                    display={{ base: "flex", md: "none" }}
+                    bg={'white'}
+                    color={"black"}
+                    minH={"100px"}
+                    py={{ base: 2 }}
+                    borderBottom={'1.5px'}
+                    borderStyle={"solid"}
+                    borderColor={"black"}
+                    align={"center"}
                 >
-                    <IconButton
-                        onClick={onToggle}
-                        icon={
-                            isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
-                        }
-                        variant={"ghost"}
-                        aria-label={"Toggle Navigation"}
-                    />
-                </Flex>
-                <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-                    <Logo textAlign={useBreakpointValue({ base: "center", md: "left" })}
-                    />
-
-                    <Flex display={{ base: "none", md: "flex" }} ml={10} justify={'flex-end'} width={'100%'}>
-                        <DesktopNav />
+                    <Flex
+                        flex={{ base: 1, md: "auto" }}
+                        ml={{ base: -2 }}
+                        display={{ base: "flex", md: "none" }}
+                    >
+                        <IconButton
+                            onClick={onToggle}
+                            icon={
+                                isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
+                            }
+                            variant={"ghost"}
+                            aria-label={"Toggle Navigation"}
+                        />
                     </Flex>
+                    <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
+                        {/* deal with this later */}
+                        {/* <Logo textAlign={useBreakpointValue({ base: "center", md: "left" })}/> */}
+                        <Logo textAlign={"center"} />
+
+                        <Flex display={{ base: "none", md: "flex" }} ml={10} justify={'flex-end'} width={'100%'}>
+                            <DesktopNav />
+                        </Flex>
+                    </Flex>
+
+                    <Stack
+                        flex={{ base: 1, md: 0 }}
+                        justify={'flex-end'}
+                        direction={'row'}
+                        spacing={6}>
+                    </Stack>
                 </Flex>
 
-                <Stack
-                    flex={{ base: 1, md: 0 }}
-                    justify={'flex-end'}
-                    direction={'row'}
-                    spacing={6}>
-                </Stack>
-            </Flex>
+                <Collapse in={isOpen} animateOpacity>
+                    <MobileNav />
+                </Collapse>
+            </Box>
 
-            <Collapse in={isOpen} animateOpacity>
-                <MobileNav />
-            </Collapse>
-        </Box>
+        </>
+
     )
 }
 
 const DesktopNav = () => {
-    // const linkColor = useColorModeValue("gray.600", "gray.200")
-    const linkHoverColor = useColorModeValue("gray.800", "white")
 
     return (
         <Stack direction={"row"} spacing={30}>
@@ -108,7 +119,7 @@ const DesktopNav = () => {
 const MobileNav = () => {
     return (
         <Stack
-            bg={useColorModeValue("white", "gray.800")}
+            bg={"white"}
             p={4}
             display={{ md: "none" }}
         >
@@ -148,7 +159,6 @@ const MobileNavItem = ({ label, children, href }) => {
                     pl={4}
                     borderLeft={1}
                     borderStyle={"solid"}
-                    borderColor={useColorModeValue("gray.200", "gray.700")}
                     align={"start"}
                 >
                     {children &&

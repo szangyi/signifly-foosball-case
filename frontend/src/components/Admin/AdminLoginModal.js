@@ -1,3 +1,5 @@
+
+import React, { useContext } from "react"
 import { UnlockIcon, LockIcon } from '@chakra-ui/icons'
 
 import {
@@ -11,38 +13,75 @@ import {
     ModalOverlay,
     Text,
     useDisclosure,
-    IconButton
+    IconButton,
+    HStack,
+    PinInput,
+    PinInputField
 } from "@chakra-ui/react"
-import AdminLock from "./AdminLock"
+import { useEffect, useState } from 'react'
+import Cookies from 'js-cookie';
+import AuthContext from "../../util/auth-context";
 
 
-export default function AdminModal() {
+
+export default function AdminModal({ setIsAdminLoggedin }) {
+
+    const ctx = useContext(AuthContext)
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [adminLoginValue, setAdminLoginValue] = useState()
+
+
+    useEffect(() => {
+        if (adminLoginValue === '1234') {
+            setIsAdminLoggedin(true)
+            console.log('login success')
+            onClose()
+        }
+    }, [adminLoginValue])
 
     return (
         <>
             {/* <AdminLock onClick={onOpen}/> */}
 
-            <IconButton
-                aria-label='Change data as admin'
-                icon={<UnlockIcon />}
-                position={'fixed'}
-                right={0}
-                bottom={0}
-                onClick={onOpen}
-            />
+            {ctx.isAdminLoggedin ? (
+                <IconButton
+                    aria-label='Change data as admin'
+                    icon={<UnlockIcon />}
+                    position={'fixed'}
+                    right={0}
+                    bottom={0}
+                />
+            ) : (
+                <IconButton
+                    aria-label='Change data as admin'
+                    icon={<LockIcon />}
+                    position={'fixed'}
+                    right={0}
+                    bottom={0}
+                    onClick={onOpen}
+                />
+            )}
+
 
             <Modal closeOnOverlayClick={true} isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Create your account</ModalHeader>
+                    <ModalHeader textAlign={'center'}>Admin password</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
-                        <Text>Helloka</Text>
+
+                        <HStack justifyContent={'center'}>
+                            <PinInput type='alphanumeric' onChange={(e) => setAdminLoginValue(e)}>
+                                <PinInputField />
+                                <PinInputField />
+                                <PinInputField />
+                                <PinInputField />
+                            </PinInput>
+                        </HStack>
                     </ModalBody>
 
-                    <ModalFooter>
-                        <Button colorScheme='blue' mr={3}>
+                    <ModalFooter textAlign={'center'}>
+                        <Button colorScheme='pink' mr={3}>
                             Save
                         </Button>
                         <Button onClick={onClose}>Cancel</Button>
