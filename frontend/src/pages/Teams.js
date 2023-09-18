@@ -35,7 +35,7 @@ export default function Teams() {
         });
     }, []);
 
-    
+
     const handleFieldChange = (event, teamIndex, fieldIndex) => {
         const newValue = event.target.value;
         setEditedData((prevData) => {
@@ -44,8 +44,8 @@ export default function Teams() {
             return updatedData;
         });
     };
-    
-      
+
+
     const submitChangeHandler = () => {
         // Send editedData to your backend API here
         console.log('Edited Data:', editedData);
@@ -58,7 +58,7 @@ export default function Teams() {
         const teamMember2 = teamMember2Ref.current.value;
 
         TeamCreateAPI({ team_name: teamName, team_member_1: teamMember1, team_member_2: teamMember2 });
-        // window.location.reload()
+        window.location.reload()
     };
 
     return (

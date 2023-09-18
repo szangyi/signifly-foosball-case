@@ -44,6 +44,8 @@ import teams_get_all
 import teams_update
 import team_create
 
+import games_get_all
+
 
 
 @route('/<:re:.*>', method='GET')

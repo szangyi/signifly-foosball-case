@@ -4,7 +4,6 @@ import json
 
 
 # GETTING ALL TEAMS # 
-# GETTING ALL TEAMS
 @get("/api/teams_get_all")
 def _():
     try:
