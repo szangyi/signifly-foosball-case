@@ -3,7 +3,7 @@ import sqlite3
 import json
 
 # Update a multiple teams' data
-@post("/api/teams_update")
+@post("/api/games_update")
 def _():
     try:
         db = sqlite3.connect("./database/signifly-foosball.db", check_same_thread=False)
@@ -14,29 +14,29 @@ def _():
         print(updated_data_list)
 
         for updated_data in updated_data_list:
-            print(updated_data)
-            id = updated_data.get("id")
-            print(id)
-            team_name = updated_data.get("team_name")
-            print(team_name)
-            team_member_1 = updated_data.get("team_member_1")
-            team_member_2 = updated_data.get("team_member_2")
+            game_id = updated_data.get("game_id")
+            team_id_1 = updated_data.get("team_id_1")
+            team_id_2 = updated_data.get("team_id_2")
+            team_score_1 = updated_data.get("team_score_1")
+            team_score_2 = updated_data.get("team_score_2")
             cursor = db.cursor()
 
             # Update the database with the new data
             sql = """
-                UPDATE teams 
-                SET team_name = ?, 
-                    team_member_1 = ?, 
-                    team_member_2 = ? 
-                WHERE id = ?
+                UPDATE games 
+                SET team_id_1 = ?, 
+                    team_id_2 = ?, 
+                    team_score_1 = ?, 
+                    team_score_2 = ? 
+                WHERE game_id = ?
                 """
             
             var = (
-                team_name,
-                team_member_1,
-                team_member_2,
-                id
+                team_id_1,
+                team_id_2,
+                team_score_1,
+                team_score_2,
+                game_id
             )
 
             cursor.execute(sql, var)
@@ -51,3 +51,6 @@ def _():
         return {"error": str(ex)}
     finally:
         db.close()
+
+
+

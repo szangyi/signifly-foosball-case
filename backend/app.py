@@ -46,6 +46,7 @@ import team_create
 
 import games_get_all
 import game_create
+import games_update
 
 
 
