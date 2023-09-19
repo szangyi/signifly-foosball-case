@@ -147,8 +147,8 @@ export default function TournamentPlan() {
                                         </GridItem>
                                         <GridItem>
                                             <Flex direction={'column'}>
-                                                <Text>{game.team_1_member_1}</Text>
-                                                <Text>{game.team_1_member_2}</Text>
+                                                <Text fontSize={'xs'} color={'#979BA3'}>{game.team_1_member_1}</Text>
+                                                <Text fontSize={'xs'} color={'#979BA3'}>{game.team_1_member_2}</Text>
                                             </Flex>
                                         </GridItem>
                                         <GridItem>
@@ -225,8 +225,8 @@ export default function TournamentPlan() {
                                             </Select>                                        </GridItem>
                                         <GridItem>
                                             <Flex direction={'column'}>
-                                                <Text>{game.team_2_member_1}</Text>
-                                                <Text>{game.team_2_member_2}</Text>
+                                                <Text fontSize={'xs'} color={'#979BA3'}>{game.team_2_member_1}</Text>
+                                                <Text fontSize={'xs'} color={'#979BA3'}>{game.team_2_member_2}</Text>
                                             </Flex>
                                         </GridItem>
                                         <GridItem>
@@ -237,6 +237,7 @@ export default function TournamentPlan() {
                             ) :
                                 (
                                     <Grid
+                                    key={gameIndex}
                                         mt={10}
                                         gridTemplateColumns={{
                                             base: '.5fr 1fr 1fr .5fr .2fr .5fr 1fr 1fr .5fr'
@@ -249,8 +250,8 @@ export default function TournamentPlan() {
                                         </GridItem>
                                         <GridItem>
                                             <Flex direction={'column'}>
-                                                <Text>{game.team_1_member_1}</Text>
-                                                <Text>{game.team_1_member_2}</Text>
+                                                <Text fontSize={'xs'} color={'#979BA3'}>{game.team_1_member_1}</Text>
+                                                <Text fontSize={'xs'} color={'#979BA3'}>{game.team_1_member_2}</Text>
                                             </Flex>
                                         </GridItem>
                                         <GridItem>
@@ -270,8 +271,8 @@ export default function TournamentPlan() {
                                         </GridItem>
                                         <GridItem>
                                             <Flex direction={'column'}>
-                                                <Text>{game.team_2_member_1}</Text>
-                                                <Text>{game.team_2_member_2}</Text>
+                                                <Text fontSize={'xs'} color={'#979BA3'}>{game.team_2_member_1}</Text>
+                                                <Text fontSize={'xs'} color={'#979BA3'}>{game.team_2_member_2}</Text>
                                             </Flex>
                                         </GridItem>
                                         <GridItem>
