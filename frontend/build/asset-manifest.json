@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1290361d.css",
+    "main.js": "/static/js/main.1b520306.js",
+    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
+    "static/media/rank-2.svg": "/static/media/rank-2.5f735e2fd0c0e3f9d13f47284d070bf9.svg",
+    "static/media/hugging-bananas.svg": "/static/media/hugging-bananas.6c236af26db237ee68d51d740b48bde9.svg",
+    "static/media/rank-1.svg": "/static/media/rank-1.4b52f4244a050b31840e93b1f7d797d0.svg",
+    "static/media/cucumber.svg": "/static/media/cucumber.26f7640cfe2c30e7d53c261ec43cf649.svg",
+    "static/media/rank-3.svg": "/static/media/rank-3.8939f76e969f6d3fd0167ee085c56a8d.svg",
+    "static/media/Aeonik-700.woff": "/static/media/Aeonik-700.e5da0233072a37776fba.woff",
+    "static/media/Aeonik-400.woff": "/static/media/Aeonik-400.25212ef6cc23cc5212b2.woff",
+    "static/media/logo.svg": "/static/media/logo.23b3b1268374c3a6fe472dc18c7c983d.svg",
+    "index.html": "/index.html",
+    "main.1290361d.css.map": "/static/css/main.1290361d.css.map",
+    "main.1b520306.js.map": "/static/js/main.1b520306.js.map",
+    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1290361d.css",
+    "static/js/main.1b520306.js"
+  ]
+}
