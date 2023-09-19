@@ -1,8 +1,8 @@
 {
-  "name": "frontend",
+  "name": "signifly-foosball-case",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://127.0.0.1:7878/",
+  "proxy": "http://szangyi.eu.pythonanywhere.com/",
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.1",
