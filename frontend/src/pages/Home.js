@@ -65,17 +65,17 @@ export default function Home() {
                     h={'fit-content'}
                     mt={5}
                     gridTemplateColumns={{
-                        // base: "1fr 1fr",
-                        md: "3fr .5fr 2fr"
+                        base: "1fr",
+                        lg: "3fr .5fr 2fr"
                     }}
                     gridTemplateRows={{
-                        // base: "auto",
-                        md: "2fr .5fr .3fr .4fr 3fr"
+                        base: "auto",
+                        lg: "2fr .5fr .3fr .4fr 3fr"
                     }}
                     gridTemplateAreas={{
-                        // base: `'header header' 'leftcard rightcard' 'map map' 'leftscrollcard rightscrollcard' 'footer footer'`,
+                        base: `'title' 'leaderboard' 'teams' 'tournamentplan' `,
                         // md: `'header header header' 'leftcard map rightcard' 'leftscrollcard map rightscrollcard' 'footer footer footer'`
-                        md: `'title gap leaderboard' 'tournamentplan gap2 leaderboard' 'tournamentplan gap2 leaderboard' 'tournamentplan gap2 teams' 'tournamentplan gap2 teams'`
+                        lg: `'title gap leaderboard' 'tournamentplan gap2 leaderboard' 'tournamentplan gap2 leaderboard' 'tournamentplan gap2 teams' 'tournamentplan gap2 teams'`
                     }}
                 // gap={4}
                 >
@@ -86,10 +86,10 @@ export default function Home() {
                             Scoreboard
                         </Text>
                         <Box>
-                            <Text fontSize={'6xl'} maxW={'500px'}>
+                            <Text fontSize={{ base: '3xl', md: '6xl' }} maxW={'500px'}>
                                 Table Foosball
                             </Text>
-                            <Text fontSize={'6xl'} maxW={'500px'}>
+                            <Text fontSize={{ base: '3xl', md: '6xl' }} maxW={'500px'}>
                                 Tournament
                             </Text>
                         </Box>
@@ -114,19 +114,22 @@ export default function Home() {
                             >
                                 <Flex direction={'column'} alignItems={'center'} textAlign={'center'} mt={'40%'}>
                                     <Box ml={'auto'}>
-                                        <Rank2 size={'100px'} />
-                                        <Text fontSize={'xl'} color={'white'}>{teamsData[1].team_name}</Text>
+                                        <Rank2 size={{ base: '70px', md: '100px' }} />
+                                        <Text fontSize={{base:'md', md: 'xl'}} mt={3} color={'white'}>#2</Text>
+                                        <Text fontSize={{base:'sm', md: 'md'}} color={'white'}>{teamsData[1].team_name}</Text>
                                         {/* <Text fontSize={'xl'} color={'white'}>place 2</Text> */}
                                     </Box>
                                 </Flex>
                                 <Flex direction={'column'} alignItems={'center'} textAlign={'center'} ml={'-10%'}>
-                                    <Rank1 size={'130px'} />
-                                    <Text fontSize={'xl'} color={'white'}>{teamsData[0].team_name}</Text>
+                                    <Rank1 size={{ base: '90px', md: '130px' }} />
+                                    <Text fontSize={{base:'md', md: 'xl'}} mt={3} color={'white'}>#1</Text>
+                                    <Text fontSize={{base:'sm', md: 'md'}} color={'white'}>{teamsData[0].team_name}</Text>
                                     {/* <Text fontSize={'xl'} color={'white'}>place 1</Text> */}
                                 </Flex>
                                 <Flex direction={'column'} alignItems={'center'} textAlign={'center'} mt={'100%'} ml={'-40%'}>
-                                    <Rank3 size={'60px'} />
-                                    <Text fontSize={'xl'} color={'white'}>{teamsData[2].team_name}</Text>
+                                    <Rank3 size={{ base: '50px', md: '60px' }} />
+                                    <Text fontSize={{base:'md', md: 'xl'}} mt={3} color={'white'}>#3</Text>
+                                    <Text fontSize={{base:'sm', md: 'md'}} color={'white'}>{teamsData[2].team_name}</Text>
                                     {/* <Text fontSize={'xl'} color={'white'}>place 3</Text> */}
                                 </Flex>
                             </Grid>
@@ -237,7 +240,7 @@ export default function Home() {
                                                         {team.team_name}
                                                     </Text>
                                                 </GridItem>
-                                                <GridItem ml={'auto'} mt={2}>
+                                                <GridItem ml={{lg: 'auto'}} mt={2}>
                                                     <Flex direction={'column'} >
                                                         <Text fontSize={'sm'} >
                                                             {team.team_member_1}

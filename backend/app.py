@@ -17,9 +17,9 @@ import games_update
 @route('/<:re:.*>', method='GET')
 def react_app():
     # Development:
-    # return static_file('index.html', root='../frontend/public')
+    return static_file('index.html', root='../frontend/public')
     # Production:
-    return static_file('index.html', root='/home/szangyi/signifly-foosball/signifly-foosball-case/frontend/build')
+    # return static_file('index.html', root='/home/szangyi/signifly-foosball/signifly-foosball-case/frontend/build')
 
 
 ############### Run #####################

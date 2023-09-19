@@ -15,6 +15,7 @@ import {
     Text,
     Select,
     Stack,
+    Show,
 } from '@chakra-ui/react';
 
 import { AddIcon, EditIcon } from '@chakra-ui/icons';
@@ -31,23 +32,8 @@ export default function TournamentPlan() {
     const [gamesData, setGamesData] = useState();
     const [teamsData, setTeamsData] = useState();
     const [editedData, setEditedData] = useState([]);
-
-
-    // Create a game
     const [team1Value, setTeam1Value] = useState();
     const [team2Value, setTeam2Value] = useState();
-
-    // Update a game
-    // const [team1ValueUpdate, setTeam1ValueUpdate] = useState();
-    // const [team2ValueUpdate, setTeam2ValueUpdate] = useState();
-    const teamNameRef = useRef(null);
-    const teamMember1Ref = useRef(null);
-    const teamMember2Ref = useRef(null);
-
-
-
-    // console.log(gamesData)
-    // console.log(teamsData)
 
     useEffect(() => {
         GamesGetAll((data) => {
@@ -91,30 +77,9 @@ export default function TournamentPlan() {
         });
     };
 
-    // const handleScoreFieldChange = (event, gameIndex, fieldName, gameId) => {
-    //     const newValue = event.target.value;
-    //     setEditedData((prevData) => {
-    //         const updatedData = [...prevData];
-    //         const updatedGame = { ...updatedData[gameIndex] }; // Get a copy of the game object at the specified index
-    //         updatedGame[fieldName] = newValue; // Update the field in the game object
-    //         updatedGame['game_id'] = gameId; // Include the game_id
-    //         updatedData[gameIndex] = updatedGame; // Update the game object in the array
-    //         console.log({ updatedData });
-    //         return updatedData;
-    //     });
-    // };
-
 
     const submitCreateHandler = () => {
-        console.log('whatever')
         GameCreateAPI({ team_id_1: team1Value, team_id_2: team2Value, })
-
-        // const teamName = teamNameRef.current.value;
-        // const teamMember1 = teamMember1Ref.current.value;
-        // const teamMember2 = teamMember2Ref.current.value;
-
-        // TeamCreateAPI({ team_name: teamName, team_member_1: teamMember1, team_member_2: teamMember2 });
-        // window.location.reload()
     };
 
     const submitChangeHandler = () => {
@@ -135,16 +100,19 @@ export default function TournamentPlan() {
                                     <Grid
                                         mb={6}
                                         gridTemplateColumns={{
-                                            base: '.5fr 1fr 1fr .5fr .2fr .5fr 1fr 1fr .5fr'
+                                            base: '1fr 1fr .5fr .2fr .5fr 1fr 1fr',
+                                            md: '.5fr 1fr 1fr .5fr .2fr .5fr 1fr 1fr .5fr'
                                         }}
                                         gridTemplateRows={{
                                             base: '1fr'
                                         }}
                                         columnGap={2}
-                                        >
+                                    >
 
-                                        <GridItem>
-                                        </GridItem>
+                                        <Show breakpoint='(min-width: 700px)'>
+                                            <GridItem>
+                                            </GridItem>
+                                        </Show>
                                         <GridItem>
                                             <Flex direction={'column'}>
                                                 <Text fontSize={'xs'} color={'#979BA3'}>{game.team_1_member_1}</Text>
@@ -229,25 +197,30 @@ export default function TournamentPlan() {
                                                 <Text fontSize={'xs'} color={'#979BA3'}>{game.team_2_member_2}</Text>
                                             </Flex>
                                         </GridItem>
-                                        <GridItem>
-                                        </GridItem>
+                                        <Show breakpoint='(min-width: 700px)'>
+                                            <GridItem>
+                                            </GridItem>
+                                        </Show>
                                     </Grid>
                                 </form>
 
                             ) :
                                 (
                                     <Grid
-                                    key={gameIndex}
+                                        key={gameIndex}
                                         mt={10}
                                         gridTemplateColumns={{
-                                            base: '.5fr 1fr 1fr .5fr .2fr .5fr 1fr 1fr .5fr'
+                                            base: '1fr 1fr .5fr .2fr .5fr 1fr 1fr',
+                                            md: '.5fr 1fr 1fr .5fr .2fr .5fr 1fr 1fr .5fr'
                                         }}
                                         gridTemplateRows={{
                                             base: '1fr'
                                         }}>
 
-                                        <GridItem>
-                                        </GridItem>
+                                        <Show breakpoint='(min-width: 700px)'>
+                                            <GridItem>
+                                            </GridItem>
+                                        </Show>
                                         <GridItem>
                                             <Flex direction={'column'}>
                                                 <Text fontSize={'xs'} color={'#979BA3'}>{game.team_1_member_1}</Text>
@@ -275,8 +248,10 @@ export default function TournamentPlan() {
                                                 <Text fontSize={'xs'} color={'#979BA3'}>{game.team_2_member_2}</Text>
                                             </Flex>
                                         </GridItem>
-                                        <GridItem>
-                                        </GridItem>
+                                        <Show breakpoint='(min-width: 700px)'>
+                                            <GridItem>
+                                            </GridItem>
+                                        </Show>
                                     </Grid>
                                 )
                         ))
@@ -296,7 +271,7 @@ export default function TournamentPlan() {
                                     gridTemplateRows={{
                                         base: '1fr'
                                     }}
-                                    >
+                                >
 
                                     <GridItem>
                                     </GridItem>

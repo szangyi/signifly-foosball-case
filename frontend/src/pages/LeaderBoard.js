@@ -15,6 +15,8 @@ import {
     Td,
     TableCaption,
     TableContainer,
+    Hide,
+    Show,
 } from '@chakra-ui/react'
 import { AddIcon, EditIcon } from '@chakra-ui/icons';
 import TeamsGetAll from '../features/TeamsGetAll';
@@ -50,7 +52,7 @@ export default function LeaderBoard() {
         <>
             <Box mx={{ base: 5, md: 12 }} mtpb={'30dvh'}>
 
-                <Text fontSize={'6xl'} mt={10}>
+                <Text fontSize={{ base: '3xl', md: '6xl' }} mt={10}>
                     Leaderboard
                 </Text>
 
@@ -60,11 +62,13 @@ export default function LeaderBoard() {
                         <Thead>
                             <Tr >
                                 <Th> </Th>
+                                <Show breakpoint='(min-width: 700px)'>
+                                    <Th> </Th>
+                                </Show>
                                 <Th> </Th>
-                                <Th> </Th>
-                                <Th >Won</Th>
-                                <Th >Lost</Th>
-                                <Th >Points</Th>
+                                <Th ><Text fontSize={{ base: 'xs', md: 'md' }}>Won</Text></Th>
+                                <Th ><Text fontSize={{ base: 'xs', md: 'md' }}>Lost</Text></Th>
+                                <Th ><Text fontSize={{ base: 'xs', md: 'md' }}>Points</Text></Th>
                             </Tr>
                         </Thead>
                         <Tbody>
@@ -72,16 +76,18 @@ export default function LeaderBoard() {
                             {teamsData &&
                                 teamsData.map((team, teamIndex) => (
                                     <Tr key={team.id} id={team.id}>
-                                        <Td h={'60px'} ><Text fontWeight={'700'} fontSize={'md'} >#{teamIndex + 1}</Text></Td>
-                                        <Td h={'60px'} >
-                                            {teamIndex + 1 === 1 && <Rank1 size={'50px'} />}
-                                            {teamIndex + 1 === 2 && <Rank2 size={'50px'} />}
-                                            {teamIndex + 1 === 3 && <Rank3 size={'50px'} />}
-                                        </Td>
-                                        <Td h={'60px'} ><Text fontSize={'md'}>{team.team_name} </Text></Td>
-                                        <Td h={'60px'} ><Text>{team.games_won} </Text></Td>
-                                        <Td h={'60px'} ><Text>{team.games_lost} </Text></Td>
-                                        <Td h={'60px'} ><Text fontWeight={'700'}>{team.games_points} </Text></Td>
+                                        <Td h={'60px'} ><Text fontWeight={'700'} fontSize={{ base: 'sm', md: 'md' }} >#{teamIndex + 1}</Text></Td>
+                                        <Show breakpoint='(min-width: 700px)'>
+                                            <Td h={'60px'} >
+                                                {teamIndex + 1 === 1 && <Rank1 size={'50px'} />}
+                                                {teamIndex + 1 === 2 && <Rank2 size={'50px'} />}
+                                                {teamIndex + 1 === 3 && <Rank3 size={'50px'} />}
+                                            </Td>
+                                        </Show>
+                                        <Td h={'60px'} ><Text fontSize={{ base: 'xs', md: 'md' }}>{team.team_name} </Text></Td>
+                                        <Td h={'60px'} ><Text fontSize={{ base: 'xs', md: 'md' }}>{team.games_won} </Text></Td>
+                                        <Td h={'60px'} ><Text fontSize={{ base: 'xs', md: 'md' }}>{team.games_lost} </Text></Td>
+                                        <Td h={'60px'} ><Text fontSize={{ base: 'xs', md: 'md' }} fontWeight={'700'}>{team.games_points} </Text></Td>
                                     </Tr>
 
                                 ))}
