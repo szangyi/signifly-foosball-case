@@ -244,7 +244,6 @@ export default function TournamentPlan() {
                                         }}>
 
                                         <GridItem>
-                                            <Text>gap</Text>
                                         </GridItem>
                                         <GridItem>
                                             <Flex direction={'column'}>

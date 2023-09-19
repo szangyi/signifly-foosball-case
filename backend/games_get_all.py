@@ -9,16 +9,25 @@ def _():
         db = sqlite3.connect("./database/signifly-foosball.db", check_same_thread=False)
         cursor = db.cursor()
 
+        # cursor.execute("""
+        #     SELECT games.game_id, games.team_id_1, games.team_id_2, games.team_score_1, games.team_score_2,
+        #            teams1.team_name AS team_name_1, teams1.team_member_1 AS team_member_1_1, teams1.team_member_2 AS team_member_2_1,
+        #            teams2.team_name AS team_name_2, teams2.team_member_1 AS team_member_1_2, teams2.team_member_2 AS team_member_2_2
+        #     FROM games
+        #     LEFT JOIN teams AS teams1 ON games.team_id_1 = teams1.id
+        #     LEFT JOIN teams AS teams2 ON games.team_id_2 = teams2.id
+        # """)
+
         cursor.execute("""
-            SELECT games.game_id, games.team_id_1, games.team_id_2, games.team_score_1, games.team_score_2,
-                   teams1.team_name AS team_name_1, teams1.team_member_1 AS team_member_1_1, teams1.team_member_2 AS team_member_2_1,
-                   teams2.team_name AS team_name_2, teams2.team_member_1 AS team_member_1_2, teams2.team_member_2 AS team_member_2_2
+            SELECT *
             FROM games
             LEFT JOIN teams AS teams1 ON games.team_id_1 = teams1.id
             LEFT JOIN teams AS teams2 ON games.team_id_2 = teams2.id
         """)
 
         games = cursor.fetchall()
+        print("## all games")
+        print(games)
 
         # Convert the games to a list of dictionaries
         games_list = []
@@ -29,13 +38,22 @@ def _():
                 "team_id_2": game[2],
                 "team_score_1": game[3],
                 "team_score_2": game[4],
-                "team_name_1": game[5],  # Extracted from JOIN
-                "team_1_member_1": game[6],  # Extracted from JOIN
-                "team_1_member_2": game[7],  # Extracted from JOIN
-                "team_name_2": game[8],  # Extracted from JOIN
-                "team_2_member_1": game[9],  # Extracted from JOIN
-                "team_2_member_2": game[10],  # Extracted from JOIN
+                "team_winner_id": game[5],  # Extracted from JOIN
+                "team_loser_id": game[6],  # Extracted from JOIN
+                "team_name_1": game[8],  # Extracted from JOIN
+                "team_1_member_1": game[9],  # Extracted from JOIN
+                "team_1_member_2": game[10],  # Extracted from JOIN
+                "team_1_games_won": game[11],
+                "team_1_games_lost": game[12],
+                "team_1_games_points": game[13],
+                "team_name_2": game[15], # Extracted from JOIN
+                "team_2_member_1": game[16],  # Extracted from JOIN
+                "team_2_member_2": game[17],  # Extracted from JOIN
+                "team_2_games_won": game[18],
+                "team_2_games_lost": game[19],
+                "team_2_games_points": game[20],
             }
+
             games_list.append(game_dict)
             print("######games list: ")
             print(games_list)
