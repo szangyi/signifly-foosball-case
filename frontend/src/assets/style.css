@@ -11,3 +11,11 @@
     font-weight: 700;
     font-style: normal;
 }
+
+
+
+th {
+    text-transform: capitalize !important;
+    color: #979BA3 !important;
+    font-family: 'Aeonik-400' !important;
+}

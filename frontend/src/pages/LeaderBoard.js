@@ -18,6 +18,9 @@ import {
 } from '@chakra-ui/react'
 import { AddIcon, EditIcon } from '@chakra-ui/icons';
 import TeamsGetAll from '../features/TeamsGetAll';
+import Rank1 from '../components/Ranks/Rank1';
+import Rank2 from '../components/Ranks/Rank2';
+import Rank3 from '../components/Ranks/Rank3';
 
 export default function LeaderBoard() {
 
@@ -52,16 +55,16 @@ export default function LeaderBoard() {
                 </Text>
 
                 <TableContainer>
-                    <Table size='sm'>
+                    <Table size='sm' variant="striped">
 
                         <Thead>
-                            <Tr>
+                            <Tr >
                                 <Th> </Th>
                                 <Th> </Th>
                                 <Th> </Th>
-                                <Th>Won</Th>
-                                <Th>Lost</Th>
-                                <Th>Points</Th>
+                                <Th >Won</Th>
+                                <Th >Lost</Th>
+                                <Th >Points</Th>
                             </Tr>
                         </Thead>
                         <Tbody>
@@ -69,12 +72,16 @@ export default function LeaderBoard() {
                             {teamsData &&
                                 teamsData.map((team, teamIndex) => (
                                     <Tr key={team.id} id={team.id}>
-                                        <Td><Text>rank</Text></Td>
-                                        <Td>image</Td>
-                                        <Td><Text>{team.team_name} </Text></Td>
-                                        <Td><Text>{team.games_won} </Text></Td>
-                                        <Td><Text>{team.games_lost} </Text></Td>
-                                        <Td><Text>{team.games_points} </Text></Td>
+                                        <Td h={'60px'} ><Text fontWeight={'700'} fontSize={'md'} >#{teamIndex + 1}</Text></Td>
+                                        <Td h={'60px'} >
+                                            {teamIndex + 1 === 1 && <Rank1 />}
+                                            {teamIndex + 1 === 2 && <Rank2 />}
+                                            {teamIndex + 1 === 3 && <Rank3 />}
+                                        </Td>
+                                        <Td h={'60px'} ><Text fontSize={'md'}>{team.team_name} </Text></Td>
+                                        <Td h={'60px'} ><Text>{team.games_won} </Text></Td>
+                                        <Td h={'60px'} ><Text>{team.games_lost} </Text></Td>
+                                        <Td h={'60px'} ><Text fontWeight={'700'}>{team.games_points} </Text></Td>
                                     </Tr>
 
                                 ))}
