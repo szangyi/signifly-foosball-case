@@ -84,7 +84,7 @@ export default function Teams() {
                     {/* View & edit teams */}
                     {teamsData &&
                         teamsData.map((team, teamIndex) => (
-                            <GridItem key={team.id} id={team.id} w='100%' h='100%'>
+                            <GridItem key={team.id} w='100%' h='100%'>
                                 <Card h={'100%'} borderRadius={0} boxShadow={0} borderTop={'1.5px solid black'}>
                                     {isAdminLoggedinStored ? (
                                         <form id={`team-edit-form-${teamIndex}`}>

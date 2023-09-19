@@ -131,7 +131,7 @@ export default function TournamentPlan() {
                     {gamesData &&
                         gamesData.map((game, gameIndex) => (
                             isAdminLoggedinStored ? (
-                                <form id={`game-edit-form-${gameIndex}`}>
+                                <form id={`game-edit-form-${gameIndex}`} key={gameIndex}>
                                     <Grid
                                         mt={10}
                                         gridTemplateColumns={{
@@ -164,7 +164,7 @@ export default function TournamentPlan() {
                                             >
                                                 {teamsData &&
                                                     teamsData.map((team, teamIndex) => (
-                                                        <option value={team.id}>{team.team_name}</option>
+                                                        <option key={teamIndex} value={team.id}>{team.team_name}</option>
                                                     ))}
                                             </Select>
                                         </GridItem>
@@ -218,7 +218,7 @@ export default function TournamentPlan() {
                                             >
                                                 {teamsData &&
                                                     teamsData.map((team, teamIndex) => (
-                                                        <option value={team.id}>{team.team_name}</option>
+                                                        <option key={teamIndex} value={team.id}>{team.team_name}</option>
                                                     ))}
                                             </Select>                                        </GridItem>
                                         <GridItem>
@@ -308,7 +308,7 @@ export default function TournamentPlan() {
                                         >
                                             {teamsData &&
                                                 teamsData.map((team, teamIndex) => (
-                                                    <option value={team.id}>{team.team_name}</option>
+                                                    <option key={teamIndex} value={team.id}>{team.team_name}</option>
                                                 ))}
                                         </Select>
                                     </GridItem>
@@ -332,7 +332,7 @@ export default function TournamentPlan() {
                                         >
                                             {teamsData &&
                                                 teamsData.map((team, teamIndex) => (
-                                                    <option value={team.id}>{team.team_name}</option>
+                                                    <option key={teamIndex} value={team.id}>{team.team_name}</option>
                                                 ))}
                                         </Select>
                                     </GridItem>

@@ -22,23 +22,26 @@ import TeamsGetAll from '../features/TeamsGetAll';
 export default function LeaderBoard() {
 
     const isAdminLoggedinStored = localStorage.getItem('isAdminLoggedinStored');
-    const [teamsData, setTeamsData] = useState(null);
+    const [teamsData, setTeamsData] = useState();
+
+    function sortByKey(array, key) {
+        return array.sort((a, b) => {
+            const x = a[key];
+            const y = b[key];
+            return x > y ? -1 : x < y ? 1 : 0;
+        });
+    }
 
     useEffect(() => {
         TeamsGetAll((data) => {
-            setTeamsData(data);
+            const sortedData = sortByKey(data, 'games_points')
+            setTeamsData(sortedData);
         });
     }, []);
 
 
-    const submitChangeHandler = () => {
-        // Send editedData to your backend API here
-        // console.log('Edited Data:', editedData);
-        // TeamUpdateAPI(editedData)
-        console.log('just submit')
-    };
-
     console.log(teamsData)
+
 
     return (
         <>
@@ -82,18 +85,6 @@ export default function LeaderBoard() {
 
             </Box>
 
-            {isAdminLoggedinStored && (
-                <Flex direction={'column'} position={'fixed'} right={0} bottom={10} alignItems={'flex-end'}>
-                    <Button
-                        onClick={submitChangeHandler}
-                        backgroundColor={'#FEC7D4'}
-                        rightIcon={<EditIcon />}
-                        variant='solid'
-                    >
-                        Save changes
-                    </Button>
-                </Flex>
-            )}
         </>
     )
 };
