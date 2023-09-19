@@ -127,19 +127,21 @@ export default function TournamentPlan() {
         <>
             <Box mx={{ base: 5, md: 12 }} pb={'30dvh'}>
 
-                <Stack>
+                <Stack mt={10}>
                     {gamesData &&
                         gamesData.map((game, gameIndex) => (
                             isAdminLoggedinStored ? (
                                 <form id={`game-edit-form-${gameIndex}`} key={gameIndex}>
                                     <Grid
-                                        mt={10}
+                                        mb={6}
                                         gridTemplateColumns={{
                                             base: '.5fr 1fr 1fr .5fr .2fr .5fr 1fr 1fr .5fr'
                                         }}
                                         gridTemplateRows={{
                                             base: '1fr'
-                                        }}>
+                                        }}
+                                        columnGap={2}
+                                        >
 
                                         <GridItem>
                                         </GridItem>
@@ -292,7 +294,8 @@ export default function TournamentPlan() {
                                     }}
                                     gridTemplateRows={{
                                         base: '1fr'
-                                    }}>
+                                    }}
+                                    >
 
                                     <GridItem>
                                     </GridItem>

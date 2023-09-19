@@ -16,6 +16,7 @@ import { AddIcon, EditIcon } from '@chakra-ui/icons';
 import TeamsGetAll from '../features/TeamsGetAll';
 import TeamUpdateAPI from '../features/TeamUpdate';
 import TeamCreateAPI from '../features/TeamCreate';
+import Bananas from '../components/Images/Bananas';
 
 export default function Teams() {
     const isAdminLoggedinStored = localStorage.getItem('isAdminLoggedinStored');
@@ -64,9 +65,15 @@ export default function Teams() {
     return (
         <>
             <Box mx={{ base: 5, md: 12 }} pb={'30dvh'}>
-                <Text fontSize={'6xl'} mt={10}>
-                    Teams
-                </Text>
+                <Flex w={'100%'} direction={{ base: 'column', sm: 'row' }} justifyContent={{ base: 'space-between' }}>
+                    <Text fontSize={'6xl'} mt={10}>
+                        Teams
+                    </Text>
+                    <Flex maxH={'150px'} mt={{ base: 2, md: 2 }} justifyContent={{ base: 'start', md: 'end' }}>
+                        <Bananas />
+                    </Flex>
+                </Flex>
+
                 <Grid
                     templateColumns={{
                         base: '1fr',
@@ -125,13 +132,13 @@ export default function Teams() {
                                     ) : (
                                         <>
                                             <Text fontSize={'3xl'} mt={5}>
-                                                {team[1]}
+                                                {team.team_name}
                                             </Text>
                                             <Text fontSize={'md'} mt={5}>
-                                                {team[2]}
+                                                {team.team_member_1}
                                             </Text>
                                             <Text fontSize={'md'} mt={5}>
-                                                {team[3]}
+                                                {team.team_member_2}
                                             </Text>
                                         </>
                                     )}

@@ -19,3 +19,13 @@ th {
     color: #979BA3 !important;
     font-family: 'Aeonik-400' !important;
 }
+
+
+.direct-link svg {
+    margin-left: 5px;
+    transition: ease-out .3s;
+}
+
+.direct-link:hover svg {
+    margin-left: 10px
+}

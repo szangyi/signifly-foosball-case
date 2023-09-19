@@ -1,17 +1,17 @@
 "use client"
 
 import React from 'react';
-import img from "../../assets/rank-3.svg"
+import img from "../../assets/rank-1.svg"
 
 import {
     Image,
 } from "@chakra-ui/react"
 
 
-export default function Rank3() {
+export default function Rank1({size}) {
     return (
         <>
-            <Image boxSize={'50px'} src={img} />
+            <Image boxSize={size} src={img} />
         </>
     )
 };

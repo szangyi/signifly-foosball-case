@@ -100,12 +100,6 @@ export default function AdminModal() {
                         </HStack>
                     </ModalBody>
 
-                    <ModalFooter textAlign={'center'}>
-                        <Button colorScheme='pink' mr={3}>
-                            Save
-                        </Button>
-                        <Button onClick={onClose}>Cancel</Button>
-                    </ModalFooter>
                 </ModalContent>
             </Modal>
 

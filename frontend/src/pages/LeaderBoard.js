@@ -18,9 +18,9 @@ import {
 } from '@chakra-ui/react'
 import { AddIcon, EditIcon } from '@chakra-ui/icons';
 import TeamsGetAll from '../features/TeamsGetAll';
-import Rank1 from '../components/Ranks/Rank1';
-import Rank2 from '../components/Ranks/Rank2';
-import Rank3 from '../components/Ranks/Rank3';
+import Rank1 from '../components/Images/Rank1';
+import Rank2 from '../components/Images/Rank2';
+import Rank3 from '../components/Images/Rank3';
 
 export default function LeaderBoard() {
 
@@ -74,9 +74,9 @@ export default function LeaderBoard() {
                                     <Tr key={team.id} id={team.id}>
                                         <Td h={'60px'} ><Text fontWeight={'700'} fontSize={'md'} >#{teamIndex + 1}</Text></Td>
                                         <Td h={'60px'} >
-                                            {teamIndex + 1 === 1 && <Rank1 />}
-                                            {teamIndex + 1 === 2 && <Rank2 />}
-                                            {teamIndex + 1 === 3 && <Rank3 />}
+                                            {teamIndex + 1 === 1 && <Rank1 size={'50px'} />}
+                                            {teamIndex + 1 === 2 && <Rank2 size={'50px'} />}
+                                            {teamIndex + 1 === 3 && <Rank3 size={'50px'} />}
                                         </Td>
                                         <Td h={'60px'} ><Text fontSize={'md'}>{team.team_name} </Text></Td>
                                         <Td h={'60px'} ><Text>{team.games_won} </Text></Td>

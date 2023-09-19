@@ -1,17 +1,17 @@
 "use client"
 
 import React from 'react';
-import img from "../../assets/rank-2.svg"
+import img from "../../assets/cucumber.svg"
 
 import {
     Image,
 } from "@chakra-ui/react"
 
 
-export default function Rank2() {
+export default function Cucumber() {
     return (
         <>
-            <Image boxSize={'50px'} src={img} />
+            <Image h={{md:'100%'}} src={img} />
         </>
     )
 };
