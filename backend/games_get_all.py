@@ -9,15 +9,6 @@ def _():
         db = sqlite3.connect("./database/signifly-foosball.db", check_same_thread=False)
         cursor = db.cursor()
 
-        # cursor.execute("""
-        #     SELECT games.game_id, games.team_id_1, games.team_id_2, games.team_score_1, games.team_score_2,
-        #            teams1.team_name AS team_name_1, teams1.team_member_1 AS team_member_1_1, teams1.team_member_2 AS team_member_2_1,
-        #            teams2.team_name AS team_name_2, teams2.team_member_1 AS team_member_1_2, teams2.team_member_2 AS team_member_2_2
-        #     FROM games
-        #     LEFT JOIN teams AS teams1 ON games.team_id_1 = teams1.id
-        #     LEFT JOIN teams AS teams2 ON games.team_id_2 = teams2.id
-        # """)
-
         cursor.execute("""
             SELECT *
             FROM games

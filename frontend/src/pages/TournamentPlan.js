@@ -143,7 +143,7 @@ export default function TournamentPlan() {
                                                 fontSize={'lg'}
                                                 fontWeight={'700'}
                                                 textAlign={'end'}
-                                                defaultValue={game.team_score_1} // Ensure defaultValue is a string
+                                                defaultValue={game.team_score_1} 
                                                 onChange={(newValue) =>
                                                     handleFieldChange({ target: { value: newValue } }, gameIndex, 'team_score_1', game.game_id)
                                                 }
@@ -160,7 +160,7 @@ export default function TournamentPlan() {
                                                 fontSize={'lg'}
                                                 fontWeight={'700'}
                                                 textAlign={'start'}
-                                                defaultValue={game.team_score_2} // Ensure defaultValue is a string
+                                                defaultValue={game.team_score_2} 
                                                 onChange={(newValue) =>
                                                     handleFieldChange({ target: { value: newValue } }, gameIndex, 'team_score_2', game.game_id)
                                                 }
@@ -174,23 +174,17 @@ export default function TournamentPlan() {
                                                 id="team2updatechange"
                                                 size='sm'
                                                 placeholder='Choose a team'
-                                                // onChange={handleTeam2UpdateChange}
-                                                // onChange={(newValue) =>
-                                                //     handleFieldChange({ target: { value: newValue } }, gameIndex, 'team_id_2')
-                                                // }
-
                                                 onChange={(event) =>
                                                     handleFieldChange(event, gameIndex, 'team_id_2', game.game_id)
                                                 }
-
                                                 defaultValue={game.team_id_2}
-                                            // value={game.team_id_2}
                                             >
                                                 {teamsData &&
                                                     teamsData.map((team, teamIndex) => (
                                                         <option key={teamIndex} value={team.id}>{team.team_name}</option>
                                                     ))}
-                                            </Select>                                        </GridItem>
+                                            </Select>
+                                        </GridItem>
                                         <GridItem>
                                             <Flex direction={'column'}>
                                                 <Text fontSize={'xs'} color={'#979BA3'}>{game.team_2_member_1}</Text>

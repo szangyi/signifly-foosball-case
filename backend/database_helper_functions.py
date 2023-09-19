@@ -45,10 +45,3 @@ def calculate_all_teams_games_won_lost(db):
     except Exception as ex:
         print(ex)
 
-# Usage example
-if __name__ == "__main__":
-    try:
-        db = sqlite3.connect("./database/signifly-foosball.db", check_same_thread=False)
-        calculate_all_teams_games_won_lost(db)
-    finally:
-        db.close()

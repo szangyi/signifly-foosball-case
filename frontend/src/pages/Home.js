@@ -11,6 +11,7 @@ import {
     Flex,
     Link
 } from "@chakra-ui/react"
+
 import GamesGetAll from '../features/GamesGetAll';
 import TeamsGetAll from '../features/TeamsGetAll';
 import Rank1 from '../components/Images/Rank1';
@@ -39,10 +40,6 @@ export default function Home() {
         GamesGetAll((data) => {
             setGamesData(data);
         });
-
-        // TeamsGetAll((data) => {
-        //     setTeamsData(data);
-        // });
 
         TeamsGetAll((data) => {
             const sortedData = sortByKey(data, 'games_points')
